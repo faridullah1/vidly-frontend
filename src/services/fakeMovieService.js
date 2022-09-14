@@ -4,7 +4,8 @@ const movies = [
 		title: 'Terminator',
 		genre: { _id: "62188020f5bfa29914a13b1e", name: 'Action' },
 		numberInStock: 6,
-		dailyRentalRate: 100
+		dailyRentalRate: 100,
+		liked: true
 	},
 	{
 		_id: "62188020f5bfa29914a1cu22",
