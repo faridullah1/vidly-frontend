@@ -79,8 +79,6 @@ class MoviesComponent extends Component {
 
 		const { totalCounts, data: movies } = this.getPagedData();
 
-		if (totalCounts === 0) return <p>There are no movies in the database!</p>
-
 		return (
 			<div className='row'>
 				<div className="col-2">
@@ -91,23 +89,27 @@ class MoviesComponent extends Component {
 				</div>
 
 				<div className="col">
-					<p> Showing { totalCounts } movies in the database</p>
+					{totalCounts === 0 && <p>There are no movies in the database!</p>}
 
-					<MoviesTable 
-						movies={movies}
-						sortColumn={sortColumn}
+					{totalCounts > 0 && <div>
+						<p> Showing { totalCounts } movies in the database</p>
 
-						onLike={this.handleLike} 
-						onDelete={this.handleDelete}
-						onSort={this.handleSort}
-						/>
+						<MoviesTable 
+							movies={movies}
+							sortColumn={sortColumn}
 
-					<Pagination 
-						totalItems={totalCounts} 
-						pageSize={pageSize}
-						currentPage={currentPage}
+							onLike={this.handleLike} 
+							onDelete={this.handleDelete}
+							onSort={this.handleSort}
+							/>
 
-						onPageChange={this.handlePageChange}/>
+						<Pagination 
+							totalItems={totalCounts} 
+							pageSize={pageSize}
+							currentPage={currentPage}
+
+							onPageChange={this.handlePageChange}/>
+					</div>}
 				</div>
 			</div>
 		);
