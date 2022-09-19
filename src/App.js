@@ -4,8 +4,9 @@ import MoviesComponent from './components/movies';
 import NavBar from './components/navBar';
 import NotFound from './components/not-found';
 import RentalsComponent from './components/rentals';
-import './App.css';
 import MovieForm from './components/movieForm';
+import LoginForm from './components/loginForm';
+import './App.css';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 			<main className='container'>
 				<Routes>
 					<Route path='/' element={<MoviesComponent />}></Route>
+					<Route path='/login' element={<LoginForm />}></Route>
 					<Route path='/movies/:id' element={<MovieForm />}></Route>
 					<Route path='/movies' element={<MoviesComponent />}></Route>
 					<Route path='/customers' element={<CustomersComponent />}></Route>
