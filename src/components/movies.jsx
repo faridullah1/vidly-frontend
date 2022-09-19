@@ -8,7 +8,7 @@ import MoviesTable from './moviesTable';
 import _ from 'lodash';
 
 
-class MovieComponent extends Component {
+class MoviesComponent extends Component {
 	state = {
 		movies: [],
 		genres: [],
@@ -78,7 +78,7 @@ class MovieComponent extends Component {
 		const { pageSize, currentPage, sortColumn } = this.state;
 
 		const { totalCounts, data: movies } = this.getPagedData();
-		
+
 		if (totalCounts === 0) return <p>There are no movies in the database!</p>
 
 		return (
@@ -114,4 +114,4 @@ class MovieComponent extends Component {
 	}
 }
  
-export default MovieComponent;
+export default MoviesComponent;
