@@ -6,6 +6,8 @@ import NotFound from './components/not-found';
 import RentalsComponent from './components/rentals';
 import MovieForm from './components/movieForm';
 import LoginForm from './components/loginForm';
+import RegisterForm from './components/registrationForm';
+
 import './App.css';
 
 
@@ -18,6 +20,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<MoviesComponent />}></Route>
 					<Route path='/login' element={<LoginForm />}></Route>
+					<Route path='/register' element={<RegisterForm />}></Route>
 					<Route path='/movies/:id' element={<MovieForm />}></Route>
 					<Route path='/movies' element={<MoviesComponent />}></Route>
 					<Route path='/customers' element={<CustomersComponent />}></Route>
