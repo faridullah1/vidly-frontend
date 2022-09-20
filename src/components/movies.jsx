@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { getMovies } from '../services/fakeMovieService';
+import { deleteMovie, getMovies } from '../services/fakeMovieService';
 import { paginate } from '../utils/paginate';
 import Pagination from './common/pagination';
 import ListGroup from './common/listGroup';
 import { getGenres } from '../services/fakeGenreService';
 import MoviesTable from './moviesTable';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 
 class MoviesComponent extends Component {
@@ -32,6 +33,8 @@ class MoviesComponent extends Component {
 		this.setState({
 			movies
 		});
+		
+		deleteMovie(movie._id);
 	}
 
 	handleLike = movie => {
@@ -92,6 +95,8 @@ class MoviesComponent extends Component {
 					{totalCounts === 0 && <p>There are no movies in the database!</p>}
 
 					{totalCounts > 0 && <div>
+						<Link className="btn btn-primary mb-3" to="/movies/new">New Movie</Link>
+
 						<p> Showing { totalCounts } movies in the database</p>
 
 						<MoviesTable 
