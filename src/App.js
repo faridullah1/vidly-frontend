@@ -1,4 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 import CustomersComponent from './components/customers';
 import MoviesComponent from './components/movies';
 import NavBar from './components/navBar';
@@ -8,12 +10,14 @@ import MovieForm from './components/movieForm';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registrationForm';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-
 
 function App() {
 	return (
 		<div>
+			<ToastContainer />
+			
 			<NavBar></NavBar>
 
 			<main className='container'>

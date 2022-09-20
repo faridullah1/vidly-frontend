@@ -1,9 +1,9 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
-import { getGenres } from '../services/fakeGenreService';
+import { getGenres } from '../services/genreService';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMovie, saveMovie } from '../services/fakeMovieService';
+import { getMovie, saveMovie } from '../services/movieService';
 
 
 class MovieFormClass extends Form {
@@ -26,16 +26,29 @@ class MovieFormClass extends Form {
 		dailyRentalRate: Joi.number().required().min(0).max(100).label('Daily Rental Rate')
 	}
 
-	componentDidMount() {
-		this.setState({ genres: getGenres()});
+	async populateGenre() {
+		const { data } = await getGenres();
+		this.setState({ genres: data });
+	}
 
-		const movieId = this.props.params.id;
-		if (movieId === 'new') return;
-		
-		const movie = getMovie(movieId);
-		if (!movie) return this.props.navigate('/not-found');
-		
-		this.setState({ data: this.mapToViewModel(movie)});
+	async populateMovie() {
+		try {
+			const movieId = this.props.params.id;
+			if (movieId === 'new') return;
+
+			const { data: movie } = await getMovie(movieId);
+			this.setState({ data: this.mapToViewModel(movie)});
+		}
+		catch (ex) {
+			if (ex.response && ex.response.status === 404) {
+				this.props.navigate('/not-found');
+			}
+		}
+	}
+
+	async componentDidMount() {
+		await this.populateGenre();
+		await this.populateMovie();
 	}
 
 	mapToViewModel(movie) {
