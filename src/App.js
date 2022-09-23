@@ -36,9 +36,9 @@ class App extends Component {
 				<main className='container'>
 					<Routes>
 						<Route path='/' element={<MoviesComponent user={user}/>}></Route>
-						<Route path='/login' element={<LoginForm />}></Route>
+						<Route path='/login' element={!user ? <LoginForm /> : <Navigate replace to={"/"} /> }></Route>
 						<Route path='/logout' element={<Logout />}></Route>
-						<Route path='/register' element={<RegisterForm />}></Route>
+						<Route path='/register' element={!user ? <RegisterForm /> : <Navigate replace to={"/"} /> }></Route>
 						<Route path='/movies/:id' element={ user ? <MovieForm /> : <Navigate replace to={"/login"} /> }></Route>
 						<Route path='/movies' element={<MoviesComponent user={user}/>}></Route>
 						<Route path='/customers' element={<CustomersComponent />}></Route>
