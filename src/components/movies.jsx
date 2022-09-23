@@ -32,20 +32,17 @@ class MoviesComponent extends Component {
 		});
 	}
 
-	handleDelete = (movie) => {
+	handleDelete = async (movie) => {
 		const originalMovies = [...this.state.movies];
 		const movies = originalMovies.filter(m => m._id !== movie._id);
 
 		this.setState({ movies });
 		
 		try {
-			deleteMovie(movie._id);
+			await deleteMovie(movie._id);
 		}
 		catch(ex) {
-			if (ex.response && ex.response.status === 404) {
-				toast.error("This movie has already been deleted.");
-			}
-
+			toast.error(ex.response.data);
 			this.setState({ movies: originalMovies });
 		}
 	}
@@ -105,11 +102,10 @@ class MoviesComponent extends Component {
 				</div>
 
 				<div className="col">
+					<Link className="btn btn-primary mb-3" to="/movies/new">New Movie</Link>
+
 					{totalCounts === 0 && <p>There are no movies in the database!</p>}
-
 					{totalCounts > 0 && <div>
-						<Link className="btn btn-primary mb-3" to="/movies/new">New Movie</Link>
-
 						<p> Showing { totalCounts } movies in the database</p>
 
 						<MoviesTable 
