@@ -1,9 +1,11 @@
 import Joi from 'joi-browser';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../services/authService';
 import Form from './common/form';
 
 
-class LoginForm extends Form {
+class LoginFormClass extends Form {
 	state = {
 		data: {
 			username: '',
@@ -17,8 +19,19 @@ class LoginForm extends Form {
 		password: Joi.string().required().label('Password')
 	}
 
-	doSubmit = () => {
-		console.log('Submitted', this.state.data);
+	doSubmit = async () => {
+		try {
+			const { username, password } = this.state.data;
+			const { data } = await login(username, password);
+			localStorage.setItem('token', data);
+			this.props.navigation('/');
+		} catch (ex) {
+			if (ex.response && ex.response.status === 400) {
+				const errors = { ...this.state.errors };
+				errors.username = ex.response.data;
+				this.setState({ errors });
+			}
+		}
 	}
 
 	render() {
@@ -34,4 +47,7 @@ class LoginForm extends Form {
 	}
 }
  
-export default LoginForm;
+export default function LoginForm(props) {
+	const navigate = useNavigate();
+	return <LoginFormClass {...props} navigation={navigate} />;
+}
