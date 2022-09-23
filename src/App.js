@@ -34,12 +34,12 @@ class App extends Component {
 
 				<main className='container'>
 					<Routes>
-						<Route path='/' element={<MoviesComponent />}></Route>
+						<Route path='/' element={<MoviesComponent user={this.state.user}/>}></Route>
 						<Route path='/login' element={<LoginForm />}></Route>
 						<Route path='/logout' element={<Logout />}></Route>
 						<Route path='/register' element={<RegisterForm />}></Route>
 						<Route path='/movies/:id' element={<MovieForm />}></Route>
-						<Route path='/movies' element={<MoviesComponent />}></Route>
+						<Route path='/movies' element={<MoviesComponent user={this.state.user}/>}></Route>
 						<Route path='/customers' element={<CustomersComponent />}></Route>
 						<Route path='/rentals' element={<RentalsComponent />}></Route>
 						<Route path='/not-found' element={<NotFound />}></Route>
