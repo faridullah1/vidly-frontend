@@ -1,7 +1,9 @@
 import Form from './common/form';
 import Joi from 'joi-browser';
-import * as userService from '../services/userService';
 import { useNavigate } from 'react-router-dom';
+
+import * as userService from '../services/userService';
+import auth from '../services/authService';
 
 class RegisterFormClass extends Form {
 	state = { 
@@ -22,7 +24,7 @@ class RegisterFormClass extends Form {
 	doSubmit = async () => {
 		try {
 			const data = await userService.register(this.state.data);
-			localStorage.setItem('token', data.headers['x-auth-token']);
+			auth.loginWithJwt(data.headers['x-auth-token']);
 			window.location = '/';
 		} catch (ex) {	
 			if (ex.response && ex.response.status === 400) {

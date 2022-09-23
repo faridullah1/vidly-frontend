@@ -22,8 +22,7 @@ class LoginFormClass extends Form {
 	doSubmit = async () => {
 		try {
 			const { username, password } = this.state.data;
-			const { data } = await login(username, password);
-			localStorage.setItem('token', data);
+			await login(username, password);
 			window.location = '/';
 		} catch (ex) {
 			if (ex.response && ex.response.status === 400) {
