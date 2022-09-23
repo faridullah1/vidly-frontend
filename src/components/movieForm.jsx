@@ -1,8 +1,10 @@
 import React from 'react';
 import Joi from 'joi-browser';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import Form from './common/form';
 import { getGenres } from '../services/genreService';
-import { useNavigate, useParams } from 'react-router-dom';
 import { getMovie, saveMovie } from '../services/movieService';
 
 
@@ -61,10 +63,14 @@ class MovieFormClass extends Form {
 		}
 	}
 
-	doSubmit = () => {
-		saveMovie(this.state.data);
-
-		this.props.navigate('/movies');
+	doSubmit = async () => {
+		try {
+			await saveMovie(this.state.data);
+			this.props.navigate('/movies');
+		}
+		catch (ex) {
+			toast.error(ex.response.data);
+		}
 	}
 
 	render() { 
