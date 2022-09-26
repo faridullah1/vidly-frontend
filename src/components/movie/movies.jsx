@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { paginate } from '../utils/paginate';
-import Pagination from './common/pagination';
-import ListGroup from './common/listGroup';
-import MoviesTable from './moviesTable';
-import { getGenres } from '../services/genreService';
-import { deleteMovie, getMovies } from '../services/movieService';
-
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import { paginate } from '../../utils/paginate';
+import Pagination from '../common/pagination';
+import ListGroup from '../common/listGroup';
+import MoviesTable from './moviesTable';
+
+import { getGenres } from '../../services/genreService';
+import { deleteMovie, getMovies } from '../../services/movieService';
 
 
 class MoviesComponent extends Component {

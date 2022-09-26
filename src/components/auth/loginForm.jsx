@@ -1,8 +1,9 @@
 import Joi from 'joi-browser';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../services/authService';
-import Form from './common/form';
+
+import { login } from '../../services/authService';
+import Form from '../common/form';
 
 
 class LoginFormClass extends Form {

@@ -3,9 +3,9 @@ import Joi from 'joi-browser';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import Form from './common/form';
-import { getGenres } from '../services/genreService';
-import { getMovie, saveMovie } from '../services/movieService';
+import Form from '../common/form';
+import { getGenres } from '../../services/genreService';
+import { getMovie, saveMovie } from '../../services/movieService';
 
 
 class MovieFormClass extends Form {

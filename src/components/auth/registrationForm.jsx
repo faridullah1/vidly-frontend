@@ -1,9 +1,10 @@
-import Form from './common/form';
 import Joi from 'joi-browser';
 import { useNavigate } from 'react-router-dom';
 
-import * as userService from '../services/userService';
-import auth from '../services/authService';
+import Form from '../common/form';
+
+import * as userService from '../../services/userService';
+import auth from '../../services/authService';
 
 class RegisterFormClass extends Form {
 	state = { 

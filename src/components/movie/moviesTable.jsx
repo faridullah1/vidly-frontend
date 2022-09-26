@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Like from "./common/like";
-import Table from './common/table';
-import auth from '../services/authService';
+
+import Like from "../common/like";
+import Table from '../common/table';
+import auth from '../../services/authService';
 
 class MoviesTable extends Component {
 	state = {
